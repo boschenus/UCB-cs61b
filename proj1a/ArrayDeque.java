@@ -13,7 +13,7 @@ public class ArrayDeque<item> {
 
     private int calnextLast(item[] p, int s, int nF) {
         if (nF + 1 + s >= p.length) {
-            return nF + s - p.length;
+            return nF + s + 1 - p.length;
         } else {
             return nF + s + 1;
         }

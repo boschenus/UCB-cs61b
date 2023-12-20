@@ -62,13 +62,14 @@ public class ArrayDeque<item> {
         item l = get(size-1);
         size--;
 
-        if (size < items.length/4) {
-            double k = 0.5*items.length;
-            resize((int)k);
-        }
-
         nextLast = calnextLast(items, size, nextFirst);
         items[nextLast] = null;
+
+        if (size < items.length/4) {
+            double k = 0.5*items.length;
+            resize((int)k + 1);
+        }
+
         return l;
     }
 
@@ -105,13 +106,12 @@ public class ArrayDeque<item> {
         } else {
             nextFirst = nextFirst+1;
         }
+        items[nextFirst] = null;
 
         if (size < items.length/4) {
             double k = 0.5*items.length;
-            resize((int)k);
+            resize((int)k + 1);
         }
-
-        items[nextFirst] = null;
         return f;
     }
 

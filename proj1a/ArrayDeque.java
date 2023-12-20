@@ -22,12 +22,12 @@ public class ArrayDeque<item> {
     private void resize(int c) {
         item[] a = (item[]) new Object[c];
         if (nextFirst + 1 + size > items.length) {
-            System.arraycopy(items,nextFirst+1, a, a.length-(items.length-nextFirst), items.length-nextFirst);
+            System.arraycopy(items,nextFirst + 1, a, a.length - (items.length - nextFirst - 1), items.length - nextFirst - 1);
             System.arraycopy(items,0, a, 0, nextLast);
-            nextFirst = a.length-(items.length-nextFirst) - 1;
+            nextFirst = a.length - (items.length - nextFirst);
         } else {
             System.arraycopy(items,nextFirst+1, a, 0, size);
-            nextFirst = a.length;
+            nextFirst = a.length - 1;
         }
         nextLast = calnextLast(a, size, nextFirst);
         items = a;
@@ -55,6 +55,10 @@ public class ArrayDeque<item> {
         }
     }
     public item removeLast() {
+        if (isEmpty()) {
+            return null;
+        }
+
         item l = get(size-1);
         size--;
 
@@ -88,6 +92,10 @@ public class ArrayDeque<item> {
     }
 
     public item removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+
         item f = get(0);
         size--;
 

@@ -28,7 +28,7 @@ public class ArrayDeque<item> {
     }
     private void resize(int c) {
         item[] a = (item[]) new Object[c];
-        if (nextFirst + 1 + size > items.length) {
+        if (getFirst() + size > items.length) {
             System.arraycopy(items, getFirst(), a, a.length - items.length + getFirst(), items.length - getFirst());
             System.arraycopy(items,0, a, 0, nextLast);
             if (a.length - (items.length - getFirst()) == 0) {
@@ -37,7 +37,7 @@ public class ArrayDeque<item> {
                 nextFirst = a.length - (items.length - getFirst()) - 1;
             }
         } else {
-            System.arraycopy(items,nextFirst + 1, a, 0, size);
+            System.arraycopy(items, getFirst(), a, 0, size);
             nextFirst = a.length - 1;
         }
         nextLast = calnextLast(a, size, nextFirst);
@@ -140,23 +140,21 @@ public class ArrayDeque<item> {
         return size;
     }
 
-//    public static void main(String[] args) {
-//        ArrayDeque a = new ArrayDeque();
-//        a.addLast(0);
-//        Object x = a.get(0);
-//        a.addFirst(2);
-//        a.removeLast();
-//        a.addLast(4);
-//        x = a.get(0);
-//        a.removeLast();
-//        a.removeFirst();
-//        a.addLast(10);
-//        a.addLast(11);
-//        a.addLast(12);
-//        x = a.get(0);
-//        a.addLast(14);
-//        a.addFirst(15);
-//        a.addFirst(16);
-//        x = a.get(2);
-//    }
+    public static void main(String[] args) {
+        ArrayDeque a = new ArrayDeque();
+        a.addFirst(0);
+        a.get(0);
+        a.get(0);
+        a.addFirst(3);
+        a.addFirst(4);
+        a.addFirst(5);
+        a.addFirst(6);
+        a.removeFirst();
+        a.get(3);
+        a.get(3);
+        a.removeLast();
+        a.removeLast();
+        a.removeLast();
+
+    }
 }

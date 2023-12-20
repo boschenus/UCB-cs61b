@@ -39,12 +39,17 @@ public class ArrayDeque<item> {
 
     public void addLast(item item) {
         if (items.length == size) {
-            resize(2*size);
+            resize(2*size + 1);
         }
 
         items[nextLast] = item;
         size++;
-        nextLast = calnextLast(items, size, nextFirst);
+
+        if (nextLast == items.length - 1) {
+            nextLast = 0;
+        } else {
+            nextLast++;
+        }
     }
 
     public item get(int index) {
@@ -59,12 +64,17 @@ public class ArrayDeque<item> {
             return null;
         }
 
-        item l = get(size-1);
+        item l = get(size - 1);
         size--;
 
-        nextLast = calnextLast(items, size, nextFirst);
+//        nextLast = calnextLast(items, size, nextFirst);
+        if (nextLast == 0) {
+            nextLast = items.length - 1;
+        } else {
+            nextLast--;
+        }
+        
         items[nextLast] = null;
-
         if (size < items.length/4) {
             double k = 0.5*items.length;
             resize((int)k + 1);
@@ -81,7 +91,7 @@ public class ArrayDeque<item> {
 
     public void addFirst(item item) {
         if (items.length == size) {
-            resize(2*size);
+            resize(2*size + 1);
         }
 
         items[nextFirst] = item;

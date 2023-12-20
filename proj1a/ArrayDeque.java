@@ -48,7 +48,7 @@ public class ArrayDeque<item> {
     }
 
     public item get(int index) {
-        if (nextFirst + 1 + index > items.length) {
+        if (nextFirst + 1 + index > items.length - 1) {
             return items[nextFirst + index + 1 - items.length];
         } else {
             return items[nextFirst + 1 + index];
@@ -63,7 +63,8 @@ public class ArrayDeque<item> {
         size--;
 
         if (size < items.length/4) {
-            resize(2*size);
+            double k = 0.5*items.length;
+            resize((int)k);
         }
 
         nextLast = calnextLast(items, size, nextFirst);
@@ -103,6 +104,11 @@ public class ArrayDeque<item> {
             nextFirst = 0;
         } else {
             nextFirst = nextFirst+1;
+        }
+
+        if (size < items.length/4) {
+            double k = 0.5*items.length;
+            resize((int)k);
         }
 
         items[nextFirst] = null;

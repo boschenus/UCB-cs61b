@@ -12,7 +12,7 @@ public class ArrayDeque<item> {
     }
 
     private int calnextLast(item[] p, int s, int nF) {
-        if (nF+1+s >= p.length) {
+        if (nF + 1 + s >= p.length) {
             return nF + s - p.length;
         } else {
             return nF + s + 1;
@@ -21,8 +21,6 @@ public class ArrayDeque<item> {
 
     private void resize(int c) {
         item[] a = (item[]) new Object[c];
-        System.arraycopy(items,nextFirst+1, a, a.length-(items.length-nextFirst), items.length-nextFirst);
-        System.arraycopy(items,0, a, 0, nextFirst+1);
         if (nextFirst + 1 + size > items.length) {
             System.arraycopy(items,nextFirst+1, a, a.length-(items.length-nextFirst), items.length-nextFirst);
             System.arraycopy(items,0, a, 0, nextLast);

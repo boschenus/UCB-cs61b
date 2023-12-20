@@ -19,18 +19,25 @@ public class ArrayDeque<item> {
         }
     }
 
+    private int getFirst () {
+        if (nextFirst == items.length - 1) {
+            return 0;
+        } else {
+            return nextFirst + 1;
+        }
+    }
     private void resize(int c) {
         item[] a = (item[]) new Object[c];
         if (nextFirst + 1 + size > items.length) {
-            System.arraycopy(items,nextFirst + 1, a, a.length - (items.length - nextFirst - 1), items.length - nextFirst - 1);
+            System.arraycopy(items, getFirst(), a, a.length - items.length + getFirst(), items.length - getFirst());
             System.arraycopy(items,0, a, 0, nextLast);
-            if (a.length - (items.length - nextFirst - 1) == 0) {
+            if (a.length - (items.length - getFirst()) == 0) {
                 nextFirst = a.length - 1;
             } else {
-                nextFirst = a.length - (items.length - nextFirst);
+                nextFirst = a.length - (items.length - getFirst()) - 1;
             }
         } else {
-            System.arraycopy(items,nextFirst+1, a, 0, size);
+            System.arraycopy(items,nextFirst + 1, a, 0, size);
             nextFirst = a.length - 1;
         }
         nextLast = calnextLast(a, size, nextFirst);
@@ -78,7 +85,7 @@ public class ArrayDeque<item> {
             nextLast--;
         }
 
-        // items[nextLast] = null;
+        items[nextLast] = null;
         if (size < items.length/4) {
             double k = 0.5*items.length;
             resize((int)k + 1);
@@ -120,7 +127,7 @@ public class ArrayDeque<item> {
         } else {
             nextFirst = nextFirst + 1;
         }
-        // items[nextFirst] = null;
+        items[nextFirst] = null;
 
         if (size < items.length/4) {
             double k = 0.5*items.length;
@@ -132,4 +139,24 @@ public class ArrayDeque<item> {
     public int size() {
         return size;
     }
+
+//    public static void main(String[] args) {
+//        ArrayDeque a = new ArrayDeque();
+//        a.addLast(0);
+//        Object x = a.get(0);
+//        a.addFirst(2);
+//        a.removeLast();
+//        a.addLast(4);
+//        x = a.get(0);
+//        a.removeLast();
+//        a.removeFirst();
+//        a.addLast(10);
+//        a.addLast(11);
+//        a.addLast(12);
+//        x = a.get(0);
+//        a.addLast(14);
+//        a.addFirst(15);
+//        a.addFirst(16);
+//        x = a.get(2);
+//    }
 }

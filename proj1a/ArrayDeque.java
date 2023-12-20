@@ -48,10 +48,10 @@ public class ArrayDeque<item> {
     }
 
     public item get(int index) {
-        if (nextFirst+1+index > items.length) {
-            return items[nextFirst+index-items.length];
+        if (nextFirst + 1 + index > items.length) {
+            return items[nextFirst + index + 1 - items.length];
         } else {
-            return items[nextFirst+1+index];
+            return items[nextFirst + 1 + index];
         }
     }
     public item removeLast() {

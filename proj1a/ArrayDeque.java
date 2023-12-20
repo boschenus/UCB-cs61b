@@ -73,8 +73,8 @@ public class ArrayDeque<item> {
         } else {
             nextLast--;
         }
-        
-        items[nextLast] = null;
+
+        // items[nextLast] = null;
         if (size < items.length/4) {
             double k = 0.5*items.length;
             resize((int)k + 1);
@@ -111,12 +111,12 @@ public class ArrayDeque<item> {
         item f = get(0);
         size--;
 
-        if (nextFirst == items.length-1) {
+        if (nextFirst == items.length - 1) {
             nextFirst = 0;
         } else {
-            nextFirst = nextFirst+1;
+            nextFirst = nextFirst + 1;
         }
-        items[nextFirst] = null;
+        // items[nextFirst] = null;
 
         if (size < items.length/4) {
             double k = 0.5*items.length;

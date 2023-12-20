@@ -24,7 +24,11 @@ public class ArrayDeque<item> {
         if (nextFirst + 1 + size > items.length) {
             System.arraycopy(items,nextFirst + 1, a, a.length - (items.length - nextFirst - 1), items.length - nextFirst - 1);
             System.arraycopy(items,0, a, 0, nextLast);
-            nextFirst = a.length - (items.length - nextFirst);
+            if (a.length - (items.length - nextFirst - 1) == 0) {
+                nextFirst = a.length - 1;
+            } else {
+                nextFirst = a.length - (items.length - nextFirst);
+            }
         } else {
             System.arraycopy(items,nextFirst+1, a, 0, size);
             nextFirst = a.length - 1;

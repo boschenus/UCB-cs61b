@@ -33,7 +33,7 @@ public class Palindrome {
         }
 
         if (cc.equalChars(word.charAt(start), word.charAt(word.length() - (start + 1)))) {
-            return isPdHelper(word, start + 1);
+            return isPdHelper(word, start + 1, cc);
         }
         return false;
     }

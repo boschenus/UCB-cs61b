@@ -138,7 +138,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
                 p = null;
                 return p;
             } else if (p.left != null && p.right != null) {
-                Node newP = findRightest(p);
+                Node newP = findRightest(p.left);
                 V newVal = newP.value;
                 K newKey = newP.key;
                 p = removeHelper(newP.key, p);
